@@ -1,0 +1,30 @@
+{
+  "name": "farao_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cappelleMedia/farao2_server_node.git"
+  },
+  "author": "jens@itprosolutions.be",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cappelleMedia/farao2_server_node/issues"
+  },
+  "homepage": "https://github.com/cappelleMedia/farao2_server_node#readme",
+  "dependencies": {
+    "async": "^2.4.1",
+    "express": "^4.15.3",
+    "js-cookie": "^2.1.4",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.10.6",
+    "mongoose-beautiful-unique-validation": "^5.1.1",
+    "mongoose-simple-random": "^0.4.1",
+    "validator": "^7.0.0",
+    "winston": "^2.3.1"
+  }
+}

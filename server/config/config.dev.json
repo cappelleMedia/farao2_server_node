@@ -1,0 +1,20 @@
+{
+  "mongo": {
+    "uri": "mongodb://localhost/farao"
+  },
+  "basepaths": {
+    "app_url": "localhost:3000",
+    "root": "C:/Users/Jens/Documents/MAIN DOCS/Major Projects/FARAO_VUE"
+  },
+  "smtpConfig": {
+    "port": "1025",
+    "debug": true
+  },
+  "cors": {
+    "origins": [
+      "localhost:3000$",
+      "localhost:$",
+      "localhost:63342$"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mongo": {
+    "uri": "mongodb://localhost/farao"
+  },
+  "basepaths": {
+    "app_url": "localhost:3000",
+    "root": "/usr/www/farao"
+  },
+  "cors": {
+    "origins": [
+      "localhost:3000$",
+      "localhost:$"
+    ]
+  }
+}
