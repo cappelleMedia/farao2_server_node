@@ -3,41 +3,51 @@
  */
 const mongoose = require('mongoose');
 const uniqueValidation = require('mongoose-beautiful-unique-validation');
+const Album = require('../albums/model');
+const Image = require('../images/model');
 
 const config = require('../config');
 
 //MAIN
-let GuestBookSchema = new mongoose.Schema({
+let EventSchema = new mongoose.Schema({
 	__v: {
 		type: Number
 	},
 	name: {
 		type: String,
 		required: true,
-		index: true
+        unique: true
 	},
-	brewery: {
-		type: String,
+	desc: {
+		type: String
+	},
+	start: {
+		type: Date,
 		required: true
 	},
-	url: {
-		type: String,
-		required: false,
-	},
-	degrees: {
-		type: Number,
-		required: true,
-	},
-	image: {
-		type: String,
+	end: {
+		type: Date,
 		required: true
 	},
-	available: {
+	lineup:{
+	    type: [String]
+    },
+	_album: {
+		type: Album.Schema
+	},
+	_headerImage: {
+	    type: Image.Schema,
+        required: true
+	},
+	sponsors:{
+	    type: [String]
+    },
+	active: {
 		type: Boolean,
 		default: false
 	},
 }, {autoIndex: config.mongo.autoIndex, id: false, read: 'secondaryPreferred'});
 
-module.exports = mongoose.model('GuestBookPost', GuestBookSchema);
+module.exports = mongoose.model('Event', EventSchema);
 
-module.exports.Schema = GuestBookSchema;
+module.exports.Schema = EventSchema;

@@ -13,8 +13,7 @@ let GuestBookPostSchema = new mongoose.Schema({
 	},
 	poster: {
 		type: String,
-		required: true,
-		index: true
+		required: true
 	},
 	message: {
 		type: String,

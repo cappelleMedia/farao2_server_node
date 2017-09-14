@@ -6,7 +6,7 @@ const Authenticator = require('../../users/authenticator');
 class BaseController {
     constructor(model) {
         this.model = model;
-		this.authenticator = Authenticator;
+        this.authenticator = Authenticator;
     }
 
     addObj(data, callback) {
@@ -52,29 +52,43 @@ class BaseController {
     }
 
     delete(jwt, id, callback) {
-        //TODO check jwt == admin then delete
+        var self = this;
+        this.authenticator.verifyAdmin(jwt, function (err, res) {
+            if (!err && res === true) {
+                self.model
+                    .findByIdAndRemove(id)
+                    .exec(function (err, obj) {
+                        if (!obj) {
+                            obj = 404;
+                        }
+                        callback(err, obj);
+                    });
+            } else {
+                callback(err,401);
+            }
+        });
     }
 
     //NO ROUTE FOR UPDATE?
-	updateObj(id, updated, callback) {
-		let self = this;
-		this.getOne(id, function (err, found) {
-			if (!isNaN(found)) {
-				callback(err, found);
-			} else {
-				Object.assign(found, updated);
-				self.addObj(found, function (err, result) {
-					let errors = null;
-					if (err) {
-						if (err.name === "ValidationError") {
-							errors = self.handleValidationErrors(err);
-						}
-					}
-					callback(err, result, errors);
-				});
-			}
-		});
-	}
+    updateObj(id, updated, callback) {
+        let self = this;
+        this.getOne(id, function (err, found) {
+            if (!isNaN(found)) {
+                callback(err, found);
+            } else {
+                Object.assign(found, updated);
+                self.addObj(found, function (err, result) {
+                    let errors = null;
+                    if (err) {
+                        if (err.name === "ValidationError") {
+                            errors = self.handleValidationErrors(err);
+                        }
+                    }
+                    callback(err, result, errors);
+                });
+            }
+        });
+    }
 
     handleValidationErrors(err) {
         console.log('should be overridden by subclass');

@@ -2,9 +2,8 @@
   "mongo": {
     "autoIndex": true,
     "options": {
-      "server": {
-        "autoreconnect": true
-      }
+      "autoReconnect": true,
+      "useMongoClient": true
     }
   },
   "basepaths": {
@@ -21,6 +20,9 @@
       "issuer": "farao:auth",
       "secret": ">PQo6b3^9gMH8MJcw%Pv:H9D"
     }
+  },
+  "security": {
+    "superPwd": "SpecialRootSecurityPwd007.2017!"
   },
   "validationConfig": {
     "usernameMinLength": 4,

@@ -5,7 +5,7 @@
 const BaseController = require('../util/bases/basecontroller');
 const Model = require('./model');
 
-class BeerController extends BaseController {
+class EventController extends BaseController {
 	constructor(model = Model) {
 		super(model);
 	}
@@ -50,4 +50,4 @@ class BeerController extends BaseController {
 		//TODO implement
 	}
 }
-module.exports = BeerController;
+module.exports = EventController;

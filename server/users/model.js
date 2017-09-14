@@ -33,31 +33,20 @@ let UserSchema = new mongoose.Schema({
 		max: 64,
 		default: userHelp.generateRegKey(64)
 	},
-	accessFlag: {
-		type: Number,
+	isSuperAdmin: {
+		type: Boolean,
 		required: true,
-		default: 0
+		default: false
 	}
 }, {autoIndex: config.mongo.autoIndex, id: false, read: 'secondaryPreferred'});
 
-/*
-	ACCESSFLAG:
-	-999 = not confirmed
-	-3 = timedout
-	-2 = can't post guestpost
-	-1 = can't post photo
-	0 = regular user
-	99 = admin
- */
 
 //METHODS
 UserSchema.methods.toTokenData = function () {
 	var tokenData = {
 		_id: this._id,
-		firstName: this.firstName,
-		lastName: this.lastName,
-		email: this.email,
-		accessFlag: this.accessFlag
+        email: this.email,
+        isSuperAdmin: this.isSuperAdmin
 	};
 	return tokenData;
 };

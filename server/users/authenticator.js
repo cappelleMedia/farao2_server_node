@@ -3,7 +3,6 @@
  */
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
-//FIXME adapt to project
 
 const Model = require('./model');
 const config = require('../config');
@@ -15,7 +14,7 @@ class Authenticator {
 
 	static authenticate(user, pwd, callback) {
 		let pwdValid = bcrypt.compareSync(pwd,user.password);
-		if (pwdValid && user.accessFlag == 99) {
+		if (pwdValid && user.isSuperAdmin == true) {
 			jwt.sign(user.toTokenData(), jwtConfig.secret, {issuer: jwtConfig.issuer}, function (err, token) {
 				return callback(err, token);
 			});
@@ -29,8 +28,8 @@ class Authenticator {
 			if (err || !data) {
 				return callback(err, 401);
 			} else {
-				if (data.accessFlag > 990) {
-					return callback(null, "verified");
+				if (data.isSuperAdmin) {
+					return callback(null, true);
 				} else {
 					return callback(err, 401);
 				}
