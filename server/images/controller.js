@@ -5,11 +5,11 @@
 const BaseController = require('../util/bases/basecontroller');
 const Model = require('./model');
 
-class BeerController extends BaseController {
+class ImageController extends BaseController {
     constructor(model = Model) {
         super(model);
     }
 
 
-    }
-module.exports = BeerController;
+}
+module.exports = ImageController;

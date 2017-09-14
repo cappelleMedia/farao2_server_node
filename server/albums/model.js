@@ -18,7 +18,7 @@ let AlbumSchema = new mongoose.Schema({
         unique: true
     },
     desc: {
-        type: String,
+        type: String
     },
     _images: {
         type: [Image.Schema]

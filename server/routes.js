@@ -6,6 +6,8 @@ module.exports = function (app) {
 	let base = '/api/v1/';
 	require('./beers/routes')(app, base + 'beers');
 	require('./events/routes')(app, base + 'events');
+	require('./images/routes')(app, base + 'images');
+	require('./albums/routes')(app, base + 'albums');
 
 	// require('./photos/routes')(app, base + 'photos');
 	// require('./guestbook/routes')(app, base + 'gbps');
